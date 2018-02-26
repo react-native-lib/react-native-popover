@@ -1,6 +1,8 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import createClass from 'create-react-class';
+import PropTypes from "prop-types";
 import {
   StyleSheet,
   Dimensions,
@@ -33,7 +35,7 @@ function Rect(x, y, width, height) {
   this.height = height;
 }
 
-var Popover = React.createClass({
+var Popover = createClass({
   propTypes: {
     isVisible: PropTypes.bool,
     onClose: PropTypes.func,
@@ -156,9 +158,9 @@ var Popover = React.createClass({
       var {popoverOrigin} = geom;
 
       if (popoverOrigin.x >= displayArea.x
-          && popoverOrigin.x <= displayArea.x + displayArea.width - contentSize.width
-          && popoverOrigin.y >= displayArea.y
-          && popoverOrigin.y <= displayArea.y + displayArea.height - contentSize.height) {
+        && popoverOrigin.x <= displayArea.x + displayArea.width - contentSize.width
+        && popoverOrigin.y >= displayArea.y
+        && popoverOrigin.y <= displayArea.y + displayArea.height - contentSize.height) {
         break;
       }
     }
@@ -325,7 +327,7 @@ var Popover = React.createClass({
   },
   render() {
     if (!this.props.isVisible && !this.state.isTransitioning) {
-        return null;
+      return null;
     }
 
     var {popoverOrigin, placement} = this.state;
@@ -349,7 +351,7 @@ var Popover = React.createClass({
           <Animated.View style={[styles.popover, {
             top: popoverOrigin.y,
             left: popoverOrigin.x,
-            }, ...extendedStyles.popover]}>
+          }, ...extendedStyles.popover]}>
             <Animated.View style={arrowStyle}/>
             <Animated.View ref='content' onLayout={this.measureContent} style={contentStyle}>
               {this.props.children}
